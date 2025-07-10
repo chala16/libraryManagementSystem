@@ -1,5 +1,6 @@
 package com.example.librarymanagesystem.dto.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,5 +19,9 @@ public class Book {
     private double price;
     private String title;
 
+    @ManyToOne
+    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    @JsonIgnoreProperties("books")
+    private Author author;
 
 }

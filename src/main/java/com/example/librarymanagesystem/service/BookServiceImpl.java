@@ -16,6 +16,11 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
+    public Book findById(int id) {
+        return bookRepo.findById(id).orElse(null);
+    }
+
+    @Override
     public void deleteBook(int id) {
         bookRepo.deleteById(id);
     }
