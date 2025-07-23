@@ -1,5 +1,6 @@
 package com.example.librarymanagesystem.controller;
 
+import com.example.librarymanagesystem.dto.models.Author;
 import com.example.librarymanagesystem.dto.models.Category;
 import com.example.librarymanagesystem.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,11 @@ public class CategoryController {
 
     @GetMapping("/category/{id}")
     public ResponseEntity<?> getCategory(@PathVariable int id) {
-        Category getCategory = categoryService.findById(id);
-        return new ResponseEntity<>(getCategory, HttpStatus.OK);
+        Category category = categoryService.findById(id);
+        if (category == null) {
+            return new ResponseEntity<>("Category not found", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(category, HttpStatus.OK);
     }
 
     @DeleteMapping("/category/{id}")

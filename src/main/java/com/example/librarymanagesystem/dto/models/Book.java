@@ -24,4 +24,8 @@ public class Book {
     @JsonIgnoreProperties("books")
     private Author author;
 
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
+
 }

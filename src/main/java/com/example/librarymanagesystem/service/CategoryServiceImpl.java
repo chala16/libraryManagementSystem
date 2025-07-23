@@ -14,14 +14,16 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category addCategory(Category category) {
+        if (category.getBooks() != null) {
+            category.getBooks().forEach(book -> book.setCategory(category));
+        }
         return categoryRepo.save(category);
     }
 
     @Override
     public Category findById(int id) {
-        return categoryRepo.findById(id).orElseThrow(() ->
-                new RuntimeException("Not Found for that Id")
-        );
+        System.out.println("check id in category service "+ id);
+        return categoryRepo.findById(id).orElse(null);
     }
 
     @Override
