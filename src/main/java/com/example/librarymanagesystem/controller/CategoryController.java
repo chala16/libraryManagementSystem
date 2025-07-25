@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 public class CategoryController {
@@ -28,6 +30,12 @@ public class CategoryController {
             return new ResponseEntity<>("Category not found", HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(category, HttpStatus.OK);
+    }
+
+    @GetMapping("/category")
+    public ResponseEntity<?> getAllCategories() {
+        List<Category> allCategories = categoryService.getAllCategories();
+        return new ResponseEntity<>(allCategories, HttpStatus.OK);
     }
 
     @DeleteMapping("/category/{id}")

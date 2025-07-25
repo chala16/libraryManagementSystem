@@ -8,7 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class AuthorController {
 
     @Autowired
@@ -21,6 +24,12 @@ public class AuthorController {
             return new ResponseEntity<>("Author not found", HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(author, HttpStatus.OK);
+    }
+
+    @GetMapping("/authors")
+    public ResponseEntity<?> getAllAuthors() {
+        List<Author> allAuthors = authorService.getAllAuthors();
+        return new ResponseEntity<>(allAuthors, HttpStatus.OK);
     }
 
     @PostMapping("/authors")

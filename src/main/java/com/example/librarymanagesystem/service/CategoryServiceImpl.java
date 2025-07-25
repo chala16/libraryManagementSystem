@@ -6,6 +6,8 @@ import com.example.librarymanagesystem.repository.CategoryRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CategoryServiceImpl implements CategoryService {
 
@@ -24,6 +26,11 @@ public class CategoryServiceImpl implements CategoryService {
     public Category findById(int id) {
         System.out.println("check id in category service "+ id);
         return categoryRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Category> getAllCategories() {
+        return categoryRepo.findAll();
     }
 
     @Override
