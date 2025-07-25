@@ -5,6 +5,8 @@ import com.example.librarymanagesystem.repository.BookRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookServiceImpl implements BookService {
 
@@ -18,6 +20,11 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book findById(int id) {
         return bookRepo.findById(id).orElse(null);
+    }
+
+    @Override
+    public List<Book> getAllBooks() {
+        return bookRepo.findAll();
     }
 
     @Override
